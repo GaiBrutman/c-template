@@ -8,8 +8,8 @@ project(
 )
 
 project_headers = include_directories('include')
-
 project_source_files = ['src/add.c']
+project_test_files = ['tests/test_add.c']
 
 project_target = library(
   meson.project_name(),
@@ -23,3 +23,17 @@ project_dep = declare_dependency(
   include_directories: project_headers,
   link_with: project_target,
 )
+
+if not meson.is_subproject()
+  subdir('tests')
+
+  test(
+    'test_add',
+    executable(
+      'test_add',
+      files('tests/test_add.c'),
+      dependencies: [project_dep, test_dep],
+      install: false,
+    ),
+  )
+endif
