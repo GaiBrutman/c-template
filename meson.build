@@ -1,0 +1,25 @@
+project(
+    'mymath',
+    'c',
+    version: '0.1.0',
+    meson_version: '>=0.50.0',
+    default_options: ['buildtype=release', 'warning_level=1'],
+    license: 'MIT',
+)
+
+project_headers = include_directories('include')
+
+project_source_files = ['src/add.c']
+
+project_target = library(
+    meson.project_name(),
+    project_source_files,
+    include_directories: project_headers,
+    install: true,
+)
+
+# Make this library usable as a Meson subproject.
+project_dep = declare_dependency(
+    include_directories: project_headers,
+    link_with: project_target,
+)
