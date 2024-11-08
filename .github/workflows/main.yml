@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install pip requirements
+      run: pip install -r requirements.txt
+
     - name: Install dependencies
       run: conan install . --output-folder=build --build=missing
     - name: Configure Meson
