@@ -3,6 +3,11 @@ name: Build & UT CI
 on: [push]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: pre-commit/action@v3.0.1
+
   build:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
