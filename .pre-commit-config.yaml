@@ -3,7 +3,6 @@ repos:
     rev: v5.0.0
     hooks:
       - id: check-yaml
-      - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: check-added-large-files
       - id: check-illegal-windows-names
@@ -11,6 +10,8 @@ repos:
       - id: pretty-format-json
       - id: check-merge-conflict
       - id: mixed-line-ending
+      - id: end-of-file-fixer
+        exclude: meson.build
 
   - repo: https://github.com/psf/black
     rev: 24.10.0
