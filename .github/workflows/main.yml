@@ -16,7 +16,9 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Install dependencies
-      run: conan install . --output-folder=build --build=missing
+      run: |
+        conan profile detect
+        conan install . --output-folder=build --build=missing
     - name: Configure Meson
       run: meson setup --native-file ${{github.workspace}}/build/conan_meson_native.ini ${{github.workspace}}/build
 
